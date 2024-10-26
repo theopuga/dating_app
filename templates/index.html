@@ -1,0 +1,33 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+
+{% block title %}Welcome - Dating App{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="text-4xl font-bold text-gray-800 mb-8">Find Your Perfect Match</h1>
+    
+    {% if current_user.is_authenticated %}
+        <div class="bg-white p-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">Welcome back, {{ current_user.username }}!</h2>
+            <div class="space-y-4">
+                <p class="text-gray-600">Ready to continue your journey?</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="{{ url_for('profile') }}" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">View Profile</a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="bg-white p-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">Start Your Journey</h2>
+            <div class="space-y-4">
+                <p class="text-gray-600">Join our community and find meaningful connections.</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="{{ url_for('register') }}" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">Sign Up</a>
+                    <a href="{{ url_for('login') }}" class="bg-gray-500 text-white px-6 py-2 rounded hover:bg-gray-600">Login</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
